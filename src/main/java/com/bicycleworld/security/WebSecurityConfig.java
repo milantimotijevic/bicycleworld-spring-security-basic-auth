@@ -13,10 +13,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable();
-        httpSecurity.authorizeRequests().anyRequest().fullyAuthenticated().and().httpBasic();
+//        httpSecurity.authorizeRequests().anyRequest().fullyAuthenticated().and().httpBasic();
+        httpSecurity.authorizeRequests().antMatchers("/message").hasRole("ADMIN").and().httpBasic();
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication().withUser("MILAN").password("PRASE").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("MILAN").password("PRASE").roles("ADMIN").and().withUser("PERA").password("PERIC").roles("CLEANER");
     }
 }

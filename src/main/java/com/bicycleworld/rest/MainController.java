@@ -10,4 +10,9 @@ public class MainController {
     public String getMessageOfTheDay() {
         return "Today is a lovely day!";
     }
+
+    @RequestMapping(value="/productname")
+    public String productName() {
+        return "stove";
+    }
 }

@@ -24,11 +24,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
-
         User user = userDao.getOneByUsername(name);
-        if(user == null) {
+
+        if(user == null || !user.getPassword().equals(password)) {
             return null;
         }
+
 
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + user.getRole()); //mind the format, it's ROLE_MyRole
         List<GrantedAuthority> authorities = new ArrayList<>();
